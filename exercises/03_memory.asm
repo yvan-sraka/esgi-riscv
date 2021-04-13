@@ -25,7 +25,7 @@
 # static volatile int32_t num1 = 256;
 # static volatile int32_t result_g = 0;
 #
-# void main(void) {
+# void main (void) {
 # // Note that your language hides the use of pointers here,
 # // actually we are manipulating memory here
 # // (especially if no optimization takes place).
@@ -48,20 +48,21 @@ result_g: .word 0
 main:
 
 # ??? <- @ num0
-l? ???, num0_g
+li t0, num0_g
 # load word from address 0 + register in register t1
-lw t1, 0​​(t0)
+lw t1, ​​(t0)
 
 # t2 <- @ num1
-l? t2, ???
+li t2, num1_g
 # Which instruction is used to load a memory word?
-??? t3, 0(t2)
+lw t3, (t2)
 
 # loading of the address of the result.
-la t4, ???
+la t4, result_g
 # make the addition between our two registers in one register.
-add ???, ???, ???
+add t4, t1, t3
 # store word, store the contents of the register in the address at 0 + t4
-sw ???, 0(t4)
-
+sw a0, 0 (t4)
+li a7, 4
+ecall
 # To be done by you totally, display our two numbers in the console (hint: syscall printInt)

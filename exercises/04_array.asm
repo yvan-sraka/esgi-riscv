@@ -43,9 +43,9 @@ msg_fail: .asciz "Whops it's not that yet, courage! :)"
 
 .text
 
-main:
+hand:
 
-la t0, array_g # t0 contains the address of the array
+the t0, array_g # t0 contains the address of the array
 
 # To sum the array we will add manually,
 # the content of all the cells of the table.
