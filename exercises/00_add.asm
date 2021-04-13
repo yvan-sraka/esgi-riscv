@@ -14,8 +14,8 @@
 
 my_code: # <- Label allows a name to be associated with an address.
 
-lui t0, 42      # load immediate: Load a number on max 12 bit in a register
-addi t0, t0, -10 # Add operand 1 (t0) and an immediate and save the result (t0)
+lui t0, 32      # load immediate: Load a number on max 12 bit in a register
+addi t0, t0, 32 # Add operand 1 (t0) and an immediate and save the result (t0)
 #     |   \ operand 1
 #     destination
 
