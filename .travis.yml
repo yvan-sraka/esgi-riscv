@@ -1,0 +1,6 @@
+language: java
+jdk:
+  - openjdk8
+script:
+  - wget https://github.com/TheThirdOne/rars/releases/download/v1.5/rars1_5.jar
+  - java -jar rars1_5.jar exercises/*.asm
