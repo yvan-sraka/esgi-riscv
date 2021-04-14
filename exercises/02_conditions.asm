@@ -1,10 +1,11 @@
+
 # Exercise 2
 # Notions:
 #
-# - be able to make a conditional jump in a program here.
-# - test the equality between two registers.
-# - carry out a conditional then unconditional branching.
-# - then display a message according to the result.
+# Be able to make a conditional jump in a program here
+# test the equality between two registers.
+# Carry out a conditional then unconditional branching.
+# Then display a message according to the result.
 
 # Objective of the program:
 #
@@ -24,8 +25,7 @@ msg_neq: .asciz "These numbers are not equal"
 # ```rust
 # let a = 4;
 # let b = 5;
-# let msg = if a == b { "These numbers are equal!" }
-#                else { "These numbers are not equal" };
+# let msg = if a == b { "These numbers are equal!" } else { "These numbers are not equal" };
 # println!(msg);
 # ```
 
@@ -34,19 +34,19 @@ msg_neq: .asciz "These numbers are not equal"
 
 # start of the program.
 main:
-li t0, 4
-li t1, 5
+li t0, 5
+li t1, 4
 
 # `bne` Branch if Not Equals: Jump if our registers are not equal.
 bne t0, t1, not_eq # if t0! = t1 jump not_eq
 
 # Equal cases t0 == t1
-la ???, ??? # msg <- "These numbers are equal!"
+la a0, msg_eq # msg <- "These numbers are equal!"
 j end # We are done so we can get out of the if.
 
 # Unequal cases t0 != T1
 not_eq:
-la ???, ??? # msg <- "These numbers are not equal"
+la a0, msg_neq # msg <- "These numbers are not equal"
 ###
 
 end:
@@ -54,8 +54,8 @@ end:
 # Display:
 #
 # Here we want to display on the console via a system call.
-# Take inspiration from 01_syscall, register a0 must contain the number of the
-# syscall printString: 4 and a7 the string to display.
+# take inspiration from 01_syscall, register a0 must contain
+# the number of the syscall printString: 4 and a7 the string to display.
 
-li ???, 4 # syscall number
-???       # which instruction should we use to make a syscall?
+li a7, 4 # syscall number
+ecall       # which instruction should we use to make a syscall?
