@@ -52,11 +52,11 @@ for:
 beqz a1, end_for
 add t2, a0, t0 # array + index: array[i]
 # t1 <- a[i]
-lw t1, 0 ​​(t2)
+lw t1, 0 (t2)
 # t1 = t1 + 1
 addi t1, t1, 1
 # a[i] <- t1
-sw t1, 0 ​​(t2)
+sw t1, 0 (t2)
 
 # index + 1
 addi t0, t0, 4 # index++
