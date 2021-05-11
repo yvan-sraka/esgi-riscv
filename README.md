@@ -4,7 +4,7 @@
 
 Download [RARS](https://github.com/TheThirdOne/rars) 1.5 (you need a Java runtime) [here](https://github.com/TheThirdOne/rars/releases/download/v1.5/rars1_5.jar).
 
-## Workshop (Deadline: May 9, 2020)
+## Workshop (Deadline: May 16, 2020)
 
 Objective: Discovery of assembler programming using RISC-V and RARS simulation software.
 
