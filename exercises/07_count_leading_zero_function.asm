@@ -73,6 +73,19 @@ soft_clz:
 # To test the value of two bits between them I recommend the `and` operation.
 
 # - + - Happy coding! - + -
+li t1 1
+slli t1, t1, 28
+mv t0, a0
+
+for:
+   bge t0, t1, end_for
+
+   slli t0, t0, 4
+   addi t2, t2, 1
+   j for
+
+end_for:
+mv a0, t2
 
 # End of the code you should write the result should be in a0!
 # \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
