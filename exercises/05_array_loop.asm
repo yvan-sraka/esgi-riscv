@@ -8,6 +8,7 @@
 #
 # - Succeed in making a loop in assembler.
 # - How many instructions are such in total done with your loop?
+# 
 #
 # Bonus:
 # - Make the loop with a counter in an exo 05_1_array_loop
@@ -25,7 +26,7 @@ array_g: .word 124, 256, 512, 2, 8, 4, 32, 1024
 ######################
 
 la t0, size_array_g # t0: size <- * size_array
-lw t0, 0(t0) # t0 <- * size_array; t0 = array size
+lw t0, 0 (t0) # t0 <- * size_array; t0 = array size
 
 # We need a register for the sum
 # a0: sum <- 0
@@ -54,19 +55,23 @@ for: # label for the start of the loop
   # If the test is successful we exit the loop by jumping to end_for
   # INSTRUCTION: `beq`
   ##
+  beq t2, t3, end_for
 
   ## TODO: load from memory the value at the current address in our array.
   # INSTRUCTION: ??? Hint: 32bits word memory load index
   ##
+  lw t4, 0(t3)
 
   ## TODO: addition between the value of the box in the array and our sum.
   # INSTRUCTION: ??? Hint: addition between two registers without immediate
   ##
+  add a0, a0, t4
   
   ## TODO: increment of the array address
   # INSTRUCTION: `addi ??, ??, 4`
   # /!\ REMINDER: integers on 32bits, so we index with step 4
   ##
+  addi t3, t3, 4
 
   ##
   # We jump to the beginning of the loop to test if we continue.
@@ -77,3 +82,5 @@ end_for: # label for the loop output
 
 # TODO: display the sum here!
 # Hint: syscall printInt
+li a7, 1
+ecall

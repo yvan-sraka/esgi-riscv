@@ -1,23 +1,33 @@
 # Exercise 4
 #
-# Objective: add all the cells of a table version "naive"
-# Without a loop, this corresponds to adding array_g[0] + array_g[1] + array_g[2].
+# Objective: Add all the cells of a table version "naive"
+# Without a loop, this corresponds to adding array_g [0] + array_g [1] + array_g [2].
 #
-# TODO: complete the hole program.
+# To do: complete the hole program.
 #
 # Questions:
 #
-# - What does the `lw` (load word) instruction do?
+# - What does the lw: load word instruction do?
+# => Récupérer la valeur à l'adresse donnée (case du tableau) et la stocker dans un registre.
+
 # - lw: What is the immediate use in front of the register containing the address?
+# => Le nombre de bits nécessaire pour atteindre l'adresse (case) du tableau recherchée
+
 # - What will lw's destination register contain?
+# => La valeur stockée à l'adresse mémoire
+
 #
-# - With an instruction like `add` what do the three registers correspond to?
+# - With an instruction like add what do the three registers correspond to?
 # `add reg0, reg1, reg2`
-# - reg0:
-# - reg1:
-# - reg2:
-#
+# - reg0: destination
+# - reg1: operand 1
+# - reg2: operand 2
+
 # - `la` what is it for?
+# => Récupérer la valeur d'une adresse globale .data et la stocker dans un registre
+
+# - When working on 32-bit words the addresses are allocated from how many to how many?
+# => From 0x00000000 0x7FFFFFFF
 
 .data
 # /!\ Warning! they are global variables in memory! /!\
@@ -36,31 +46,33 @@ array_g: .word 124, 256, 512
 # | Content | 124   | 256   | 512   |
 # + ------- + ----- + ----- + ----- +
 
-# Strings for testing
+# Chains for testing
 msg_success: .asciz "The sum matches well! Well done."
 msg_fail: .asciz "Whops it's not that yet, courage! :)"
 
 .text
 
-main:
+hand:
 
 la t0, array_g # t0 contains the address of the array
 
-# To sum the array we will add manually, the content of all the cells of the
-# table.
+# To sum the array we will add manually,
+# the content of all the cells of the table.
 
-lw t1, 0​​(t0) # t1: array_g[0]
-# lw ???, 4(???) <- TODO: To be completed!
+lw t1, 0 (t0) # t1: array_g [0]
+lw t2, 4 (t0) # t0: array_g [4]<- TODO: To be completed!
 # You can also add on the address which is in t0
 add a0, t1, t2 # sum = t2 + t1
 
 
-# Here you have to add a0 which contains the sum with the register which will
-# contain the value of the 3rd cell of the table.
+# Here you have to add a0 which contains the sum
+# with the register which will contain the value of the 3rd cell of the table.
+lw t3, 8 (t0)
+add a0, a0, t3
 
-######################################################################
-# Teacher part: test if it works and displays a message accordingly. #
-######################################################################
+###
+# Teacher part: test if it works and displays a message accordingly.
+###
 test:
 # Test sum == 892
 li  a1, 892
